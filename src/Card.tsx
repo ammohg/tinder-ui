@@ -19,8 +19,8 @@ export class Card extends React.Component<Card.Data, {}> {
     className = '';
     render() {
         if (!this.className && this.props.className) {
-            console.log(this.props.name, 'は,', this.props.className, 'されました')
-            this.className = this.props.className
+            console.log(`${this.props.name}は${this.props.className}されました`);
+            this.className = this.props.className;
         }
 
         return (

@@ -43,14 +43,14 @@ export class TinderUI extends React.Component<TinderUI.Props, TinderUI.State> {
                     selectCardState={this.state.selectCardState}
                     />
                 <button
-                    onClick={()=>{this.clickButton('good')}}
-                    >
-                    いいね
-                </button>
-                <button
                     onClick={()=>{this.clickButton('bad')}}
                     >
                     ごめんなさい
+                </button>
+                <button
+                    onClick={()=>{this.clickButton('good')}}
+                    >
+                    ありがとう
                 </button>
             </div>
         );

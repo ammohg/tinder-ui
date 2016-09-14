@@ -225,7 +225,7 @@
 	    }
 	    Card.prototype.render = function () {
 	        if (!this.className && this.props.className) {
-	            console.log(this.props.name, 'は,', this.props.className, 'されました');
+	            console.log(this.props.name + "\u306F" + this.props.className + "\u3055\u308C\u307E\u3057\u305F");
 	            this.className = this.props.className;
 	        }
 	        return (React.createElement("li", {className: 'card ' + this.className}, React.createElement("div", {className: "card-img", style: { backgroundImage: "url(" + this.props.imageUrl + ")" }}, React.createElement("p", null, React.createElement("span", {className: "name"}, this.props.name), React.createElement("span", {className: "age"}, this.props.age), React.createElement("span", {className: "address"}, this.props.address)), React.createElement("p", {className: "tweet"})), React.createElement("p", null, React.createElement("span", {className: "profession"}, this.props.profession), React.createElement("span", {className: "height"}, this.props.height))));
