@@ -16,27 +16,26 @@ export namespace Card {
 }
 
 export class Card extends React.Component<Card.Data, {}> {
-    className = '';
+    evaluation = '';
     render() {
-        if (!this.className && this.props.state) {
+        if (!this.evaluation && this.props.state) {
             console.log(`${this.props.name}は${this.props.state}されました`);
-            this.className = this.props.state;
+            this.evaluation = this.props.state;
         }
 
         return (
-            <li className={'card ' + this.className}>
-                <div className="card-img" style={{backgroundImage: `url(${this.props.imageUrl})`}}>
-                    <p>
-                        <span className="name">{this.props.name}</span>
-                        <span className="age">{this.props.age}</span>
-                        <span className="address">{this.props.address}</span>
-                    </p>
-                    <p className="tweet"></p>
+            <li className={'card ' + this.evaluation}>
+                <div className="card-img" style={{ backgroundImage: `url(${this.props.imageUrl})` }}>
+                <div className="card-overlay">
+                    <span className="card-overlay-text">
+                        {`${this.props.name} ${this.props.age}歳 ${this.props.address}`}
+                    </span>
+                    <span className="card-tweet">{this.props.tweet}</span>
                 </div>
-                <p>
-                    <span className="profession">{this.props.profession}</span>
-                    <span className="height">{this.props.height}</span>
-                </p>
+                </div>
+                <div className="card-profession">
+                    {`${this.props.profession} ${this.props.height}cm`}
+                </div>
             </li>
         )
     }

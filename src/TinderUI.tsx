@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import {data} from "./data.ts";
 
-// import {Button} from "./Button";
+import {Button} from "./Button";
 import {CardList} from "./CardList";
 
 export namespace TinderUI {
@@ -31,24 +31,24 @@ export class TinderUI extends React.Component<TinderUI.Props, TinderUI.State> {
     clickButton(state: string) {
         this.setState({
             selectCard: {
-                id: (this.i + 1 < data.length) ? data[this.i++].id : null,
+                id: data[this.i++].id,
                 state: state
             }
         });
     }
 
     render() {
+        if (this.i === data.length) {
+            return (<div>カードがありません</div>);
+        }
+
         return (
             <div>
                 <CardList data={data}
                     selectCard={this.state.selectCard}
                     />
-                <button onClick={ () => { this.clickButton('bad') } }>
-                    ごめんなさい
-                </button>
-                <button onClick={ () => { this.clickButton('good') } } >
-                    ありがとう
-                </button>
+                <Button onClick={this.clickButton.bind(this, 'bad')} text="ごめんなさい" />
+                <Button onClick={this.clickButton.bind(this, 'good')} text="ありがとう" />
             </div>
         );
     }

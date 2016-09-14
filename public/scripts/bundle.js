@@ -75,7 +75,7 @@
 	};
 	var React = __webpack_require__(1);
 	var data_ts_1 = __webpack_require__(4);
-	// import {Button} from "./Button";
+	var Button_1 = __webpack_require__(7);
 	var CardList_1 = __webpack_require__(5);
 	var TinderUI = (function (_super) {
 	    __extends(TinderUI, _super);
@@ -92,14 +92,16 @@
 	    TinderUI.prototype.clickButton = function (state) {
 	        this.setState({
 	            selectCard: {
-	                id: (this.i + 1 < data_ts_1.data.length) ? data_ts_1.data[this.i++].id : null,
+	                id: data_ts_1.data[this.i++].id,
 	                state: state
 	            }
 	        });
 	    };
 	    TinderUI.prototype.render = function () {
-	        var _this = this;
-	        return (React.createElement("div", null, React.createElement(CardList_1.CardList, {data: data_ts_1.data, selectCard: this.state.selectCard}), React.createElement("button", {onClick: function () { _this.clickButton('bad'); }}, "ごめんなさい"), React.createElement("button", {onClick: function () { _this.clickButton('good'); }}, "ありがとう")));
+	        if (this.i === data_ts_1.data.length) {
+	            return (React.createElement("div", null, "カードがありません"));
+	        }
+	        return (React.createElement("div", null, React.createElement(CardList_1.CardList, {data: data_ts_1.data, selectCard: this.state.selectCard}), React.createElement(Button_1.Button, {onClick: this.clickButton.bind(this, 'bad'), text: "ごめんなさい"}), React.createElement(Button_1.Button, {onClick: this.clickButton.bind(this, 'good'), text: "ありがとう"})));
 	    };
 	    return TinderUI;
 	}(React.Component));
@@ -223,18 +225,42 @@
 	    __extends(Card, _super);
 	    function Card() {
 	        _super.apply(this, arguments);
-	        this.className = '';
+	        this.evaluation = '';
 	    }
 	    Card.prototype.render = function () {
-	        if (!this.className && this.props.state) {
+	        if (!this.evaluation && this.props.state) {
 	            console.log(this.props.name + "\u306F" + this.props.state + "\u3055\u308C\u307E\u3057\u305F");
-	            this.className = this.props.state;
+	            this.evaluation = this.props.state;
 	        }
-	        return (React.createElement("li", {className: 'card ' + this.className}, React.createElement("div", {className: "card-img", style: { backgroundImage: "url(" + this.props.imageUrl + ")" }}, React.createElement("p", null, React.createElement("span", {className: "name"}, this.props.name), React.createElement("span", {className: "age"}, this.props.age), React.createElement("span", {className: "address"}, this.props.address)), React.createElement("p", {className: "tweet"})), React.createElement("p", null, React.createElement("span", {className: "profession"}, this.props.profession), React.createElement("span", {className: "height"}, this.props.height))));
+	        return (React.createElement("li", {className: 'card ' + this.evaluation}, React.createElement("div", {className: "card-img", style: { backgroundImage: "url(" + this.props.imageUrl + ")" }}, React.createElement("div", {className: "card-overlay"}, React.createElement("span", {className: "card-overlay-text"}, this.props.name + " " + this.props.age + "\u6B73 " + this.props.address), React.createElement("span", {className: "card-tweet"}, this.props.tweet))), React.createElement("div", {className: "card-profession"}, this.props.profession + " " + this.props.height + "cm")));
 	    };
 	    return Card;
 	}(React.Component));
 	exports.Card = Card;
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var React = __webpack_require__(1);
+	var Button = (function (_super) {
+	    __extends(Button, _super);
+	    function Button() {
+	        _super.apply(this, arguments);
+	    }
+	    Button.prototype.render = function () {
+	        return (React.createElement("button", {onClick: this.props.onClick.bind(this)}, this.props.text));
+	    };
+	    return Button;
+	}(React.Component));
+	exports.Button = Button;
 
 
 /***/ }
