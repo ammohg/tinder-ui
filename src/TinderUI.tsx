@@ -27,7 +27,7 @@ export class TinderUI extends React.Component<TinderUI.Props, TinderUI.State> {
         this.setState({
             selectCardState: state
         });
-        this.selectId(++this.i)
+        this.selectId(data[this.i++].id)
     }
     selectId(id: number) {
         this.setState({

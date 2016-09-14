@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 
 export namespace Card {
     export interface Data extends React.Props<Card> {
-        className?: string;
+        state?: string;
         id?: number;
         name?: string;
         age?: number;
@@ -18,9 +18,9 @@ export namespace Card {
 export class Card extends React.Component<Card.Data, {}> {
     className = '';
     render() {
-        if (!this.className && this.props.className) {
-            console.log(`${this.props.name}は${this.props.className}されました`);
-            this.className = this.props.className;
+        if (!this.className && this.props.state) {
+            console.log(`${this.props.name}は${this.props.state}されました`);
+            this.className = this.props.state;
         }
 
         return (

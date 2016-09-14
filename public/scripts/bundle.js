@@ -90,7 +90,7 @@
 	        this.setState({
 	            selectCardState: state
 	        });
-	        this.selectId(++this.i);
+	        this.selectId(data_ts_1.data[this.i++].id);
 	    };
 	    TinderUI.prototype.selectId = function (id) {
 	        this.setState({
@@ -99,7 +99,7 @@
 	    };
 	    TinderUI.prototype.render = function () {
 	        var _this = this;
-	        return (React.createElement("div", null, React.createElement(CardList_1.CardList, {data: data_ts_1.data, selectCardId: this.state.selectCardId, selectCardState: this.state.selectCardState}), React.createElement("button", {onClick: function () { _this.clickButton('good'); }}, "いいね"), React.createElement("button", {onClick: function () { _this.clickButton('bad'); }}, "ごめんなさい")));
+	        return (React.createElement("div", null, React.createElement(CardList_1.CardList, {data: data_ts_1.data, selectCardId: this.state.selectCardId, selectCardState: this.state.selectCardState}), React.createElement("button", {onClick: function () { _this.clickButton('bad'); }}, "ごめんなさい"), React.createElement("button", {onClick: function () { _this.clickButton('good'); }}, "ありがとう")));
 	    };
 	    return TinderUI;
 	}(React.Component));
@@ -123,7 +123,7 @@
 	        "imageUrl": "image/id1.jpg"
 	    },
 	    {
-	        "id": 2,
+	        "id": 2423,
 	        "name": "会員2",
 	        "age": 20,
 	        "address": "大阪",
@@ -133,7 +133,7 @@
 	        "imageUrl": "image/id2.jpg"
 	    },
 	    {
-	        "id": 3,
+	        "id": 3656,
 	        "name": "会員3",
 	        "age": 30,
 	        "address": "東京",
@@ -143,7 +143,7 @@
 	        "imageUrl": "image/id1.jpg"
 	    },
 	    {
-	        "id": 4,
+	        "id": 43565,
 	        "name": "会員4",
 	        "age": 20,
 	        "address": "大阪",
@@ -153,7 +153,7 @@
 	        "imageUrl": "image/id2.jpg"
 	    },
 	    {
-	        "id": 5,
+	        "id": 56346,
 	        "name": "会員5",
 	        "age": 30,
 	        "address": "東京",
@@ -163,7 +163,7 @@
 	        "imageUrl": "image/id1.jpg"
 	    },
 	    {
-	        "id": 6,
+	        "id": 66436,
 	        "name": "会員6",
 	        "age": 20,
 	        "address": "大阪",
@@ -194,9 +194,7 @@
 	    }
 	    CardList.prototype.render = function () {
 	        var _this = this;
-	        var cardNodes = this.props.data.map(function (data) {
-	            return (React.createElement(Card_1.Card, {key: data.id, className: data.id === _this.props.selectCardId ? _this.props.selectCardState : null, name: data.name, age: data.age, address: data.address, tweet: data.tweet, profession: data.profession, height: data.height, imageUrl: data.imageUrl}));
-	        }).reverse();
+	        var cardNodes = this.props.data.map(function (data) { return (React.createElement(Card_1.Card, {key: data.id, state: data.id === _this.props.selectCardId ? _this.props.selectCardState : null, name: data.name, age: data.age, address: data.address, tweet: data.tweet, profession: data.profession, height: data.height, imageUrl: data.imageUrl})); }).reverse();
 	        return (React.createElement("ul", {className: "cardList"}, cardNodes));
 	    };
 	    return CardList;
@@ -224,9 +222,9 @@
 	        this.className = '';
 	    }
 	    Card.prototype.render = function () {
-	        if (!this.className && this.props.className) {
-	            console.log(this.props.name + "\u306F" + this.props.className + "\u3055\u308C\u307E\u3057\u305F");
-	            this.className = this.props.className;
+	        if (!this.className && this.props.state) {
+	            console.log(this.props.name + "\u306F" + this.props.state + "\u3055\u308C\u307E\u3057\u305F");
+	            this.className = this.props.state;
 	        }
 	        return (React.createElement("li", {className: 'card ' + this.className}, React.createElement("div", {className: "card-img", style: { backgroundImage: "url(" + this.props.imageUrl + ")" }}, React.createElement("p", null, React.createElement("span", {className: "name"}, this.props.name), React.createElement("span", {className: "age"}, this.props.age), React.createElement("span", {className: "address"}, this.props.address)), React.createElement("p", {className: "tweet"})), React.createElement("p", null, React.createElement("span", {className: "profession"}, this.props.profession), React.createElement("span", {className: "height"}, this.props.height))));
 	    };
