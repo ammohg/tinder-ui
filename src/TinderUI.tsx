@@ -10,8 +10,10 @@ export namespace TinderUI {
     export interface Props extends React.Props<TinderUI> {
     }
     export interface State {
-        selectCardId?: number;
-        selectCardState?: string;
+        selectCard?: {
+            id: number;
+            state: string;
+        }
     }
 }
 
@@ -20,36 +22,31 @@ export class TinderUI extends React.Component<TinderUI.Props, TinderUI.State> {
     constructor() {
         super();
         this.state = {
-            selectCardId: data[this.i].id
+            selectCard: {
+                id: data[this.i].id,
+                state: null
+            }
         }
     }
     clickButton(state: string) {
         this.setState({
-            selectCardState: state
-        });
-        this.selectId(data[this.i++].id)
-    }
-    selectId(id: number) {
-        this.setState({
-            selectCardId: id
+            selectCard: {
+                id: (this.i + 1 < data.length) ? data[this.i++].id : null,
+                state: state
+            }
         });
     }
-    
+
     render() {
         return (
             <div>
                 <CardList data={data}
-                    selectCardId={this.state.selectCardId}
-                    selectCardState={this.state.selectCardState}
+                    selectCard={this.state.selectCard}
                     />
-                <button
-                    onClick={()=>{this.clickButton('bad')}}
-                    >
+                <button onClick={ () => { this.clickButton('bad') } }>
                     ごめんなさい
                 </button>
-                <button
-                    onClick={()=>{this.clickButton('good')}}
-                    >
+                <button onClick={ () => { this.clickButton('good') } } >
                     ありがとう
                 </button>
             </div>

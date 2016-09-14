@@ -83,23 +83,23 @@
 	        _super.call(this);
 	        this.i = 0;
 	        this.state = {
-	            selectCardId: data_ts_1.data[this.i].id
+	            selectCard: {
+	                id: data_ts_1.data[this.i].id,
+	                state: null
+	            }
 	        };
 	    }
 	    TinderUI.prototype.clickButton = function (state) {
 	        this.setState({
-	            selectCardState: state
-	        });
-	        this.selectId(data_ts_1.data[this.i++].id);
-	    };
-	    TinderUI.prototype.selectId = function (id) {
-	        this.setState({
-	            selectCardId: id
+	            selectCard: {
+	                id: (this.i + 1 < data_ts_1.data.length) ? data_ts_1.data[this.i++].id : null,
+	                state: state
+	            }
 	        });
 	    };
 	    TinderUI.prototype.render = function () {
 	        var _this = this;
-	        return (React.createElement("div", null, React.createElement(CardList_1.CardList, {data: data_ts_1.data, selectCardId: this.state.selectCardId, selectCardState: this.state.selectCardState}), React.createElement("button", {onClick: function () { _this.clickButton('bad'); }}, "ごめんなさい"), React.createElement("button", {onClick: function () { _this.clickButton('good'); }}, "ありがとう")));
+	        return (React.createElement("div", null, React.createElement(CardList_1.CardList, {data: data_ts_1.data, selectCard: this.state.selectCard}), React.createElement("button", {onClick: function () { _this.clickButton('bad'); }}, "ごめんなさい"), React.createElement("button", {onClick: function () { _this.clickButton('good'); }}, "ありがとう")));
 	    };
 	    return TinderUI;
 	}(React.Component));
@@ -194,7 +194,11 @@
 	    }
 	    CardList.prototype.render = function () {
 	        var _this = this;
-	        var cardNodes = this.props.data.map(function (data) { return (React.createElement(Card_1.Card, {key: data.id, state: data.id === _this.props.selectCardId ? _this.props.selectCardState : null, name: data.name, age: data.age, address: data.address, tweet: data.tweet, profession: data.profession, height: data.height, imageUrl: data.imageUrl})); }).reverse();
+	        if (this.props.selectCard.id == null) {
+	            return (React.createElement("div", {className: "no-card"}, "カードがありません"));
+	        }
+	        var cardNodes = this.props.data.map(function (data) { return (React.createElement(Card_1.Card, {key: data.id, state: (data.id === _this.props.selectCard.id) ?
+	            _this.props.selectCard.state : null, name: data.name, age: data.age, address: data.address, tweet: data.tweet, profession: data.profession, height: data.height, imageUrl: data.imageUrl})); }).reverse();
 	        return (React.createElement("ul", {className: "cardList"}, cardNodes));
 	    };
 	    return CardList;
