@@ -101,7 +101,7 @@
 	        if (this.i === data_ts_1.data.length) {
 	            return (React.createElement("div", null, "カードがありません"));
 	        }
-	        return (React.createElement("div", null, React.createElement(CardList_1.CardList, {data: data_ts_1.data, selectCard: this.state.selectCard}), React.createElement(Button_1.Button, {onClick: this.clickButton.bind(this, 'bad'), text: "ごめんなさい"}), React.createElement(Button_1.Button, {onClick: this.clickButton.bind(this, 'good'), text: "ありがとう"})));
+	        return (React.createElement("div", null, React.createElement(CardList_1.CardList, {data: data_ts_1.data, selectCard: this.state.selectCard}), React.createElement("div", {className: "button-wapper"}, React.createElement(Button_1.Button, {onClick: this.clickButton.bind(this, 'bad'), text: "ごめんなさい"}), React.createElement(Button_1.Button, {onClick: this.clickButton.bind(this, 'good'), text: "ありがとう"}), React.createElement("p", null, "ごめんなさいを押してもお相手には通知されません"))));
 	    };
 	    return TinderUI;
 	}(React.Component));
@@ -232,7 +232,7 @@
 	            console.log(this.props.name + "\u306F" + this.props.state + "\u3055\u308C\u307E\u3057\u305F");
 	            this.evaluation = this.props.state;
 	        }
-	        return (React.createElement("li", {className: 'card ' + this.evaluation}, React.createElement("div", {className: "card-img", style: { backgroundImage: "url(" + this.props.imageUrl + ")" }}, React.createElement("div", {className: "card-overlay"}, React.createElement("span", {className: "card-overlay-text"}, this.props.name + " " + this.props.age + "\u6B73 " + this.props.address), React.createElement("span", {className: "card-tweet"}, this.props.tweet))), React.createElement("div", {className: "card-profession"}, this.props.profession + " " + this.props.height + "cm")));
+	        return (React.createElement("div", {className: 'card ' + this.evaluation}, React.createElement("div", {className: "card-img", style: { backgroundImage: "url(" + this.props.imageUrl + ")" }}, React.createElement("div", {className: "card-overlay"}, React.createElement("span", {className: "card-overlay-text"}, this.props.name + " " + this.props.age + "\u6B73 " + this.props.address), React.createElement("span", {className: "card-tweet"}, this.props.tweet))), React.createElement("div", {className: "card-profession"}, this.props.profession + " " + this.props.height + "cm")));
 	    };
 	    return Card;
 	}(React.Component));
@@ -256,7 +256,7 @@
 	        _super.apply(this, arguments);
 	    }
 	    Button.prototype.render = function () {
-	        return (React.createElement("button", {onClick: this.props.onClick.bind(this)}, this.props.text));
+	        return (React.createElement("span", {className: "button", onClick: this.props.onClick.bind(this)}, this.props.text));
 	    };
 	    return Button;
 	}(React.Component));

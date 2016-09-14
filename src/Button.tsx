@@ -11,9 +11,9 @@ export namespace Button {
 export class Button extends React.Component<Button.Props, {}> {
     render() {
         return (
-            <button onClick={this.props.onClick.bind(this)}>
+            <span className="button" onClick={this.props.onClick.bind(this) }>
                 {this.props.text}
-            </button>
+            </span>
         )
     }
 }

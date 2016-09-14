@@ -47,8 +47,13 @@ export class TinderUI extends React.Component<TinderUI.Props, TinderUI.State> {
                 <CardList data={data}
                     selectCard={this.state.selectCard}
                     />
-                <Button onClick={this.clickButton.bind(this, 'bad')} text="ごめんなさい" />
-                <Button onClick={this.clickButton.bind(this, 'good')} text="ありがとう" />
+                <div className="button-wapper">
+                    <Button onClick={this.clickButton.bind(this, 'bad') } text="ごめんなさい" />
+                    <Button onClick={this.clickButton.bind(this, 'good') } text="ありがとう" />
+                    <p>
+                    ごめんなさいを押してもお相手には通知されません
+                    </p>
+                </div>
             </div>
         );
     }
