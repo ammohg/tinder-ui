@@ -24,7 +24,7 @@ export class Card extends React.Component<Card.Data, {}> {
         }
 
         return (
-            <div className={'card ' + this.evaluation}>
+            <li className={'card ' + this.evaluation}>
                 <div className="card-img" style={{ backgroundImage: `url(${this.props.imageUrl})` }}>
                 <div className="card-overlay">
                     <span className="card-overlay-text">
@@ -36,7 +36,7 @@ export class Card extends React.Component<Card.Data, {}> {
                 <div className="card-profession">
                     {`${this.props.profession} ${this.props.height}cm`}
                 </div>
-            </div>
+            </li>
         )
     }
 }

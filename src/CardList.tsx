@@ -17,12 +17,7 @@ export namespace CardList {
 
 export class CardList extends React.Component<CardList.Props, CardList.State> {
     render() {
-        if (this.props.selectCard.id == null) {
-            return (<div className="no-card">
-                カードがありません
-            </div>)
-        }
-        const cardNodes = this.props.data.map((data) => (
+        let cardNodes = this.props.data.map((data) => (
             <Card key={data.id}
                 state={
                     (data.id === this.props.selectCard.id) ?
@@ -36,7 +31,10 @@ export class CardList extends React.Component<CardList.Props, CardList.State> {
                 height={data.height}
                 imageUrl={data.imageUrl}
                 />
-        )).reverse();
+        ));
+
+        cardNodes.push(<li className="card no-card" key="no-card">カードがありません</li>)
+        cardNodes.reverse()
 
         return (
             <ul className="cardList">

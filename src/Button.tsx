@@ -4,6 +4,7 @@ import * as ReactDOM from "react-dom";
 export namespace Button {
     export interface Props extends React.Props<Button> {
         text: string | JSX.Element;
+        disabled: boolean;
         onClick?: (e: Event) => any;
     }
 }
@@ -11,9 +12,9 @@ export namespace Button {
 export class Button extends React.Component<Button.Props, {}> {
     render() {
         return (
-            <span className="button" onClick={this.props.onClick.bind(this) }>
+            <button className="button" onClick={this.props.onClick.bind(this)} disabled={this.props.disabled}>
                 {this.props.text}
-            </span>
+            </button>
         )
     }
 }

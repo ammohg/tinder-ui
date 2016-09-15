@@ -14,46 +14,50 @@ export namespace TinderUI {
             id: number;
             state: string;
         }
+        isCardAnimetion: boolean;
     }
 }
 
 export class TinderUI extends React.Component<TinderUI.Props, TinderUI.State> {
-    i = 0
+    cardIndex = 0;
+
     constructor() {
         super();
         this.state = {
             selectCard: {
-                id: data[this.i].id,
+                id: data[this.cardIndex].id,
                 state: null
-            }
+            },
+            isCardAnimetion: false
         }
     }
-    clickButton(state: string) {
+    changeCard(state: string) {
         this.setState({
             selectCard: {
-                id: data[this.i++].id,
+                id: data[this.cardIndex++].id,
                 state: state
-            }
+            },
+            isCardAnimetion: true
         });
+
+        setTimeout(() => {
+            this.setState({
+                isCardAnimetion: false,
+                selectCard: this.state.selectCard
+            });
+        }, 600);
     }
 
     render() {
-        if (this.i === data.length) {
-            return (<div>カードがありません</div>);
-        }
-
         return (
             <div>
-                <CardList data={data}
-                    selectCard={this.state.selectCard}
-                    />
-                <div className="button-wapper">
-                    <Button onClick={this.clickButton.bind(this, 'bad') } text="ごめんなさい" />
-                    <Button onClick={this.clickButton.bind(this, 'good') } text="ありがとう" />
-                    <p>
-                    ごめんなさいを押してもお相手には通知されません
-                    </p>
-                </div>
+                <CardList data={data} selectCard={this.state.selectCard} />
+
+                {this.cardIndex !== data.length ? (<div className="button-wapper">
+                    <Button onClick={this.changeCard.bind(this, 'bad') } text="ごめんなさい" disabled={this.state.isCardAnimetion} />
+                    <Button onClick={this.changeCard.bind(this, 'good') } text="ありがとう" disabled={this.state.isCardAnimetion} />
+                    <p>ごめんなさいを押してもお相手には通知されません</p>
+                </div>) : ''}
             </div>
         );
     }
