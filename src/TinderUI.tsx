@@ -54,8 +54,14 @@ export class TinderUI extends React.Component<TinderUI.Props, TinderUI.State> {
                 <CardList data={data} selectCard={this.state.selectCard} />
 
                 {this.cardIndex !== data.length ? (<div className="button-wapper">
-                    <Button onClick={this.changeCard.bind(this, 'bad') } text="ごめんなさい" disabled={this.state.isCardAnimetion} />
-                    <Button onClick={this.changeCard.bind(this, 'good') } text="ありがとう" disabled={this.state.isCardAnimetion} />
+                    <Button onClick={this.changeCard.bind(this, 'noop') } disabled={this.state.isCardAnimetion}>
+                        <i className="fa fa-meh-o fa-3" aria-hidden="true"></i><br />
+                        ごめんなさい
+                    </Button>
+                    <Button className="like-button" onClick={this.changeCard.bind(this, 'like') } disabled={this.state.isCardAnimetion}>
+                        <i className="fa fa-thumbs-o-up fa-3" aria-hidden="true"></i><br />
+                        ありがとう
+                    </Button>
                     <p>ごめんなさいを押してもお相手には通知されません</p>
                 </div>) : ''}
             </div>

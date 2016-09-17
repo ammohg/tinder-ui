@@ -25,33 +25,39 @@ body {
     background: #fff;
     transform-origin: center 300%;
 
-    transition: all .5s linear 0;
+    transition: all .6s linear 0;
 }
 
 .cardList .card:first-child {
     box-shadow: 5px 5px 5px rgba(0,0,0,0.4);
 }
-.card.good {
-    transform: translate(100vw, 0);
+.card.like {
+    /*transform: translate(100vw, 0);*/
     transform: rotate(30deg);
     opacity: 0;
 }
-.card.good .card-img::after {
-    content: 'ありがとう';
+.card.like .card-img::after {
+    content: 'Like';
+    display: inline-block;
+    margin: .5em 1em;
+    border: 3px solid red;
     color: red;
     font-weight: bold;
     font-size: 50px;
 }
-.card.bad .card-img::after {
-    content: 'ごめんなさい';
+.card.noop {
+    /*transform: translate(-100vw, 0);*/
+    transform: rotate(-30deg);
+    opacity: 0;
+}
+.card.noop .card-img::after {
+    content: 'Noop';
+    display: inline-block;
+    margin: .5em 1em;
+    border: 3px solid blue;
     color: blue;
     font-weight: bold;
     font-size: 50px;
-}
-.card.bad {
-    transform: translate(-100vw, 0);
-    transform: rotate(-30deg);
-    opacity: 0;
 }
 
 .card-img {
@@ -62,6 +68,7 @@ body {
     height: 300px;
     background-size: cover;
     background-position: center;
+    text-align: center;
 }
 
 .card-overlay {
@@ -101,10 +108,9 @@ body {
     width: 100px;
     height: 100px;
     margin: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #bbb;
     border-radius: 100px;
 
-    line-height: 100px;
     text-align: center;
     background: #fff;
 }
@@ -112,4 +118,12 @@ body {
 .button-wapper {
     /*margin: 0 auto;*/
     text-align: center
+}
+
+.like-button {
+    background: #FF8597;
+    color: #fff
+}
+.fa.fa-3 {
+font-size: 3em
 }
